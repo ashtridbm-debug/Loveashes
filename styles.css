@@ -1,0 +1,265 @@
+/* Layout: a print shop proof sheet on white. Dashed die-cut lines carry the
+   structure; real product sheets sit as cut-out cards on soft pink stock. */
+:root{
+  /* Sampled from the logo: heart #E01A56, wordmark plum #34021E. */
+  --paper:#FFFFFF;
+  --blush:#FDEFF3;
+  --card:#FFFFFF;
+  --ink:#34021E;
+  --ink-soft:#74505F;
+  --rose:#E01A56;
+  --rose-soft:#F4A6BC;
+  --cut:#F6D2DE;
+  --lift:0 10px 30px rgba(52,2,30,.10);
+  color-scheme:light;
+
+  --display:"Gloock",Georgia,"Times New Roman",serif;
+  --body:"Karla","Helvetica Neue",Arial,sans-serif;
+  --spec:"IBM Plex Mono",ui-monospace,"Courier New",monospace;
+}
+/* This brand commits to one look: white paper and soft pink. The page stays
+   light even when the viewer's device is set to dark mode, so every colour is
+   declared above and no dark overrides exist. */
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:1rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0 0 auto;
+  height:env(safe-area-inset-top,0px);z-index:12;background:var(--paper);
+}
+.wrap{
+  max-width:64rem;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.14;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+img{display:block;max-width:100%}
+
+nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:11;
+  background:var(--paper);border-bottom:1px dashed var(--cut);
+}
+.navin{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.85rem}
+.mark{display:inline-flex;align-items:center;text-decoration:none;min-width:0}
+.mark img{height:2.1rem;width:auto;max-width:min(62vw,15rem)}
+@media (max-width:420px){.mark img{height:1.75rem}}
+.navlinks{display:flex;gap:1.2rem;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;font-family:var(--spec)}
+.navlinks a{text-decoration:none;color:var(--ink-soft);white-space:nowrap}
+.navlinks a:hover{color:var(--rose)}
+@media (max-width:900px){.navlinks{display:none}}
+
+.spec{font-family:var(--spec);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose)}
+
+/* ---- hero ---- */
+.hero{padding-block:clamp(2.5rem,7vw,4rem) clamp(2.5rem,7vw,4.5rem)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,3.5rem);align-items:center}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(2.5rem,7vw,4.3rem);margin-block:1rem .9rem}
+.hero h1 em{font-style:italic;color:var(--rose)}
+.lede{font-size:clamp(1.02rem,1.9vw,1.18rem);color:var(--ink-soft);max-width:36ch}
+
+/* trust strip */
+.trust{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin-top:1.7rem;
+  padding-top:1.2rem;border-top:1px dashed var(--cut);
+  font-family:var(--spec);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.trust span{display:inline-flex;align-items:center;gap:.45rem}
+.trust span::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--rose);flex:none}
+
+/* stacked product shots */
+.stack{position:relative;aspect-ratio:1/1.02;max-width:100%;margin-inline:auto}
+.stack figure{
+  position:absolute;margin:0;width:56%;border-radius:.9rem;overflow:hidden;
+  border:1.5px dashed var(--cut);background:var(--blush);box-shadow:var(--lift);
+}
+.stack figure img{width:100%;height:auto;aspect-ratio:480/679;object-fit:cover}
+.stack .s1{left:0;top:2%;transform:rotate(-6deg);z-index:1}
+.stack .s2{right:0;top:0;transform:rotate(5deg);z-index:2}
+.stack .s3{left:22%;bottom:0;transform:rotate(-1.5deg);z-index:3}
+.stack-cap{
+  position:absolute;left:0;right:0;bottom:-1.9rem;text-align:center;
+  font-family:var(--spec);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);
+}
+@media (max-width:560px){
+  .stack{aspect-ratio:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+  .stack figure{position:static;width:auto;transform:none;box-shadow:none}
+  .stack-cap{position:static;margin-top:.8rem}
+}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--spec);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;padding:.8rem 1.3rem;border-radius:2rem;
+  background:var(--rose);color:#FFFFFF;border:1.5px solid var(--rose);
+  transition:transform .14s ease,opacity .14s ease;
+}
+.btn:hover{transform:translateY(-1px);opacity:.88}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--cut)}
+.btn.ghost:hover{background:var(--blush);border-color:var(--rose);opacity:1}
+.btn-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.6rem}
+.btn:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+
+.band{border-top:1px dashed var(--cut);padding-block:clamp(2.75rem,7vw,4.5rem)}
+.band.tint{background:var(--blush)}
+.band-head{max-width:46ch;margin-bottom:2.25rem}
+.band-head h2{font-size:clamp(1.8rem,4.2vw,2.7rem);margin-block:.7rem .7rem}
+.band-head p{color:var(--ink-soft)}
+
+/* ---- product cards ---- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.4rem}
+.item{position:relative;min-width:0;background:var(--card);border:1.5px dashed var(--cut);border-radius:1.1rem;overflow:hidden;display:flex;flex-direction:column}
+.item.pick{border-style:solid;border-color:var(--rose);border-width:2px}
+.shotwrap{background:var(--blush);border-bottom:1px dashed var(--cut)}
+.shotwrap img{width:100%;height:auto;aspect-ratio:480/679;object-fit:cover;max-width:100%}
+.item-body{padding:1.15rem 1.25rem 1.35rem;display:flex;flex-direction:column;gap:.45rem;flex:1}
+.item h4{font-family:var(--display);font-weight:400;font-size:1.2rem;margin:0;line-height:1.2}
+.item p{font-size:.88rem;color:var(--ink-soft);flex:1}
+.item .price{font-family:var(--spec);font-size:1rem;font-weight:500;color:var(--rose);font-variant-numeric:tabular-nums}
+.item .tags{font-family:var(--spec);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.flag{position:absolute;top:.9rem;right:.9rem;z-index:2;background:var(--rose);color:#FFFFFF;font-family:var(--spec);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .65rem;border-radius:1rem}
+
+/* ---- bundle ---- */
+.bundle{border:2px solid var(--rose);border-radius:1.2rem;background:var(--card);padding:clamp(1.5rem,4vw,2.5rem);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+@media (max-width:760px){.bundle{grid-template-columns:1fr}}
+.bundle h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:.6rem}
+.bundle ul{margin:.9rem 0 0;padding-left:1.1rem;color:var(--ink-soft);font-size:.92rem;columns:2;column-gap:1.6rem}
+@media (max-width:520px){.bundle ul{columns:1}}
+.bundle li{margin-bottom:.2rem;break-inside:avoid}
+.bundle-price{text-align:right}
+@media (max-width:760px){.bundle-price{text-align:left}}
+.bundle-price .was{font-family:var(--spec);font-size:.85rem;color:var(--ink-soft);text-decoration:line-through;display:block}
+.bundle-price .now{font-family:var(--display);font-size:clamp(2.6rem,7vw,3.6rem);color:var(--rose);line-height:1}
+
+/* ---- spec sheet ---- */
+.specsheet{border:1.5px dashed var(--cut);border-radius:1rem;background:var(--card);padding:1.5rem;font-family:var(--spec);font-size:.86rem}
+.specsheet dl{display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.4rem;margin:0}
+.specsheet dt{color:var(--rose);letter-spacing:.08em;text-transform:uppercase;font-size:.7rem;align-self:center}
+.specsheet dd{margin:0;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+@media (max-width:460px){.specsheet dl{grid-template-columns:1fr}.specsheet dd{margin-bottom:.5rem}}
+
+/* ---- about ---- */
+.about{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(1.75rem,5vw,3.5rem);align-items:center}
+@media (max-width:760px){.about{grid-template-columns:1fr}}
+.portrait{border-radius:1.1rem;overflow:hidden;border:1.5px dashed var(--cut);background:var(--blush);max-width:14rem}
+.portrait img{width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.about p{color:var(--ink-soft);margin-bottom:1rem;max-width:56ch}
+.about h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-block:.6rem 1rem}
+.quote{font-family:var(--display);font-size:1.18rem;line-height:1.45;color:var(--ink);border-left:2px solid var(--rose);padding-left:1.1rem;margin-bottom:0}
+
+/* ---- contact ---- */
+.contact{text-align:center;max-width:40rem;margin-inline:auto}
+.contact h2{font-size:clamp(2rem,5vw,3rem);margin-block:.8rem 1rem}
+.contact>p{color:var(--ink-soft)}
+.contact .btn-row{justify-content:center;margin-top:2rem}
+.contact-fields{display:flex;flex-direction:column;align-items:center;gap:.7rem;margin-top:1.8rem}
+.field{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:center}
+.field-label{
+  font-family:var(--spec);font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--rose);min-width:4rem;text-align:right;
+}
+@media (max-width:440px){.field-label{min-width:0;text-align:center;width:100%}}
+.field-note{font-family:var(--spec);font-size:.72rem;color:var(--ink-soft);margin-top:.4rem}
+.mailbox{font-family:var(--spec);font-size:.9rem;background:var(--card);border:1.5px dashed var(--cut);border-radius:.6rem;padding:.65rem .9rem;user-select:all;word-break:break-all;min-width:0}
+.copy{font-family:var(--spec);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1.5px solid var(--cut);border-radius:.6rem;padding:.65rem 1rem;color:var(--ink);cursor:pointer}
+.copy:hover{border-color:var(--rose);color:var(--rose)}
+
+footer{border-top:1px dashed var(--cut);padding-block:2.5rem 3rem;background:var(--blush)}
+.foot{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:flex-start}
+.foot-links{display:flex;flex-wrap:wrap;gap:1.2rem;font-family:var(--spec);font-size:.8rem}
+.foot-links a{text-decoration:none;color:var(--ink-soft)}
+.foot-links a:hover{color:var(--rose)}
+.foot small{color:var(--ink-soft);font-family:var(--spec);font-size:.72rem;letter-spacing:.06em}
+
+/* ===== motion =====================================================
+   Two kinds only. A short load sequence in the hero, and hover feedback
+   on things you can click. Blocks further down reveal on scroll through
+   a view() timeline, which simply does nothing in browsers that lack it,
+   so no content ever depends on script to become visible. ============ */
+
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fan-l{from{opacity:0;transform:translate(26px,18px) rotate(0deg)}to{opacity:1;transform:rotate(-6deg)}}
+@keyframes fan-r{from{opacity:0;transform:translate(-26px,18px) rotate(0deg)}to{opacity:1;transform:rotate(5deg)}}
+@keyframes fan-c{from{opacity:0;transform:translateY(26px) rotate(0deg)}to{opacity:1;transform:rotate(-1.5deg)}}
+
+@media (prefers-reduced-motion: no-preference){
+  /* hero load sequence: fill is backwards, so once it finishes the element
+     falls back to its own CSS and hover transforms still work. */
+  .hero .spec,
+  .hero h1,
+  .hero .lede,
+  .hero .btn-row,
+  .hero .trust{animation:rise .55s cubic-bezier(.22,.7,.3,1) backwards}
+  .hero .spec{animation-delay:.04s}
+  .hero h1{animation-delay:.11s}
+  .hero .lede{animation-delay:.19s}
+  .hero .btn-row{animation-delay:.26s}
+  .hero .trust{animation-delay:.33s}
+  .stack-cap{animation:rise .5s ease .5s backwards}
+
+  @media (min-width:561px){
+    .stack .s1{animation:fan-l .7s cubic-bezier(.22,.7,.3,1) .16s backwards}
+    .stack .s2{animation:fan-r .7s cubic-bezier(.22,.7,.3,1) .24s backwards}
+    .stack .s3{animation:fan-c .7s cubic-bezier(.22,.7,.3,1) .32s backwards}
+  }
+  @media (max-width:560px){
+    .stack figure{animation:rise .5s ease backwards}
+    .stack .s2{animation-delay:.08s}
+    .stack .s3{animation-delay:.16s}
+  }
+
+  /* scroll reveal, containers only so the cards keep their own hover transforms */
+  @supports (animation-timeline: view()){
+    .band-head,.grid,.product,
+    .bundle,.specsheet,.about>div,.contact>*{
+      animation:rise .9s linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 42%;
+    }
+  }
+}
+
+/* hover feedback */
+.navlinks a{position:relative}
+.navlinks a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:-.3rem;height:1px;
+  background:var(--rose);transition:right .25s ease;
+}
+.navlinks a:hover::after{right:0}
+
+.item{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.item:hover{transform:translateY(-4px);box-shadow:var(--lift);border-color:var(--rose)}
+.shotwrap{overflow:hidden}
+.shotwrap img{transition:transform .55s cubic-bezier(.22,.7,.3,1)}
+.item:hover .shotwrap img{transform:scale(1.045)}
+
+@media (min-width:561px){
+  .stack figure{transition:transform .4s cubic-bezier(.22,.7,.3,1),box-shadow .4s ease}
+  .stack:hover .s1{transform:rotate(-9deg) translate(-10px,-6px)}
+  .stack:hover .s2{transform:rotate(8deg) translate(10px,-6px)}
+  .stack:hover .s3{transform:rotate(-1.5deg) translateY(8px)}
+}
+
+.mailbox{transition:border-color .25s ease}
+.mailbox:hover{border-color:var(--rose-soft)}
+.copy{transition:border-color .2s ease,color .2s ease}
+
+/* smooth jumps, offset so the sticky nav never covers a section heading */
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+}
