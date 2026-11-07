@@ -1,6 +1,6 @@
 # Love, Ashes
 
-Marketing site for loveashes.co, printable packaging templates for Filipino online sellers.
+Marketing site for loveashes.shop, printable packaging templates and hand beaded phone straps for Filipino online sellers.
 
 Plain HTML and CSS. No framework, no dependencies.
 

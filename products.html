@@ -35,6 +35,23 @@
 }
 .includes li{display:flex;gap:.6rem;align-items:flex-start}
 .includes li::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--rose);flex:none;margin-top:.55rem}
+
+/* category filter chips */
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:-.4rem 0 1.8rem}
+.chip{
+  font-family:var(--spec);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:.5rem .95rem;border-radius:999px;cursor:pointer;
+  background:transparent;border:1.5px dashed var(--cut);color:var(--ink-soft);
+  transition:border-color .2s ease,color .2s ease,background .2s ease;
+}
+/* thumbs need a bigger target than a cursor does */
+@media (max-width:560px){.chip{padding:.88rem 1.05rem}}
+.chip:hover{border-color:var(--rose);color:var(--rose)}
+.chip[aria-pressed="true"]{
+  background:var(--rose);border-color:var(--rose);border-style:solid;color:#fff;
+}
+/* whichever listing is showing first sits flush under the filter row */
+.product.firstshown{border-top:0;padding-top:0}
 </style>
 </head>
 <body>
@@ -91,7 +108,18 @@
 <section class="band">
   <div class="wrap">
 
-    <article class="product">
+    <div class="cat">
+      <h3 id="catname">All products</h3>
+      <span id="catcount">Printable files, instant download</span>
+    </div>
+
+    <div class="chips" id="chips" hidden>
+      <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" class="chip" data-filter="stickers" aria-pressed="false">Stickers</button>
+      <button type="button" class="chip" data-filter="digital" aria-pressed="false">Digital Products</button>
+    </div>
+
+    <article class="product" data-cat="stickers">
       <div class="product-shot">
         <img src="img/thank-you-stickers.png" alt="A sheet of thirty round thank you stickers in florals, watercolour and bold type" width="480" height="679">
       </div>
@@ -115,7 +143,7 @@
       </div>
     </article>
 
-    <article class="product">
+    <article class="product" data-cat="digital">
       <div class="product-shot">
         <img src="img/business-cards.png" alt="Business card template in navy and gold shown on laptop screens" width="480" height="679" loading="lazy">
       </div>
@@ -139,7 +167,7 @@
       </div>
     </article>
 
-    <article class="product">
+    <article class="product" data-cat="digital">
       <div class="product-shot">
         <img src="img/photo-printing.png" alt="Photo printing bundle showing passport size, two by two, wallet size and photocard layouts" width="480" height="679" loading="lazy">
       </div>
@@ -163,30 +191,6 @@
       </div>
     </article>
 
-  </div>
-</section>
-
-<section class="band tint">
-  <div class="wrap">
-    <div class="bundle">
-      <div>
-        <p class="spec">Everything together</p>
-        <h2>All three, one download</h2>
-        <p style="color:var(--ink-soft)">Brand a whole shop and print your own ID photos in the same afternoon.</p>
-        <ul>
-          <li>30 pcs thank you stickers</li>
-          <li>Business card template</li>
-          <li>Photo printing bundle</li>
-        </ul>
-      </div>
-      <div class="bundle-price">
-        <span class="was">&#8369;397 separately</span>
-        <span class="now">&#8369;299</span>
-        <div class="btn-row" style="justify-content:flex-end">
-          <a class="btn" href="https://ko-fi.com/ashesbm">Get the bundle</a>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -216,7 +220,7 @@
         <img src="img/logo.webp" alt="Love, ashes. Digital products." width="2000" height="667">
       </a>
       <br>
-      <small>loveashes.co &middot; Cavite, Philippines</small>
+      <small>Cavite, Philippines</small>
     </div>
     <div class="foot-links">
       <a href="index.html">Home</a>
@@ -251,6 +255,39 @@
      the sheet must never be left flagged open once the real nav links return */
   window.addEventListener('resize',sync,{passive:true});
   window.addEventListener('pageshow',sync);
+})();
+</script>
+
+<script>
+/* Category filter. The chip row starts hidden and is only revealed here, so a
+   browser without script shows every listing and no dead buttons. */
+(function(){
+  var chips=document.getElementById('chips');
+  var items=[].slice.call(document.querySelectorAll('.product[data-cat]'));
+  var name=document.getElementById('catname'), count=document.getElementById('catcount');
+  if(!chips||!items.length)return;
+  var labels={all:'All products',stickers:'Stickers',digital:'Digital Products'};
+  chips.hidden=false;
+  function apply(f){
+    var shown=0;
+    items.forEach(function(it){
+      var on=(f==='all'||it.getAttribute('data-cat')===f);
+      it.hidden=!on; if(on)shown++;
+    });
+    [].forEach.call(chips.querySelectorAll('.chip'),function(b){
+      b.setAttribute('aria-pressed',b.getAttribute('data-filter')===f?'true':'false');
+    });
+    name.textContent=labels[f]||labels.all;
+    count.textContent=shown+(shown===1?' product':' products');
+    /* the first visible row loses its flush-to-hero styling when it is hidden */
+    items.forEach(function(it){it.classList.remove('firstshown');});
+    var vis=items.filter(function(it){return !it.hidden;});
+    if(vis[0])vis[0].classList.add('firstshown');
+  }
+  chips.addEventListener('click',function(e){
+    var b=e.target.closest('.chip'); if(b)apply(b.getAttribute('data-filter'));
+  });
+  apply('all');
 })();
 </script>
 

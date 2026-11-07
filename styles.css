@@ -66,6 +66,11 @@ nav{
 .mark{display:inline-flex;align-items:center;text-decoration:none;min-width:0}
 .mark img{height:2.1rem;width:auto;max-width:min(62vw,15rem)}
 @media (max-width:420px){.mark img{height:1.75rem}}
+/* both wordmarks run well above the 2.1rem base size */
+.navin .mark img{height:3.4rem}
+footer .mark img{height:3.25rem}
+@media (max-width:420px){.navin .mark img{height:2.7rem}}
+@media (max-width:420px){footer .mark img{height:2.6rem}}
 .navlinks{display:flex;align-self:stretch;align-items:center;gap:1.2rem;font-size:.8rem;letter-spacing:.04em;text-transform:uppercase;font-family:var(--spec)}
 .navlinks a{text-decoration:none;color:var(--ink-soft);white-space:nowrap}
 .navlinks a:hover{color:var(--rose)}
@@ -75,6 +80,9 @@ nav{
 
 /* ---- hero ---- */
 .hero{padding-block:clamp(2.5rem,7vw,4rem) clamp(2.5rem,7vw,4.5rem)}
+/* the badge strip is a thin line of text, not a heading, so it does not need
+   the full hero inset above it: pull it up close under the nav */
+.hero:has(>.trust:first-child){padding-top:clamp(1rem,2.2vw,1.5rem)}
 /* minmax(0,...) is load bearing: the stack's children are absolutely positioned,
    so it has no intrinsic width, and a bare fr track lets the headline steal the
    whole row and collapse the image column to nothing. */
@@ -100,6 +108,13 @@ nav{
 }
 .trust span{display:inline-flex;align-items:center;gap:.45rem}
 .trust span::before{content:"";width:.4rem;height:.4rem;border-radius:50%;background:var(--rose);flex:none}
+/* when the strip leads the hero instead of closing it, the dashed rule belongs
+   underneath it and the spacing flips with it */
+.hero .trust:first-child{
+  margin-top:0;margin-bottom:1.3rem;
+  padding-top:0;padding-bottom:1.1rem;
+  border-top:0;border-bottom:1px dashed var(--cut);
+}
 
 /* stacked product shots */
 /* width:100% is required. Every child is absolutely positioned, so without an
@@ -139,12 +154,28 @@ nav{
 .btn:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
 
 .band{border-top:1px dashed var(--cut);padding-block:clamp(2.75rem,7vw,4.5rem)}
+/* a hero's bottom inset and the next band's top inset stacked to ~144px of
+   empty page, which pushed the first thing in the band below the fold. The
+   dashed rule between them already does the separating, so halve the junction. */
+.hero:has(+ .band){padding-bottom:clamp(1.75rem,3.5vw,2.5rem)}
+.hero + .band{padding-top:clamp(1.5rem,3vw,2.25rem)}
 .band.tint{background:var(--blush)}
 .band-head{max-width:46ch;margin-bottom:2.25rem}
 .band-head h2{font-size:clamp(1.8rem,4.2vw,2.7rem);margin-block:.7rem .7rem}
 .band-head p{color:var(--ink-soft)}
 
 /* ---- product cards ---- */
+/* category header: names the group of cards under it, with a dashed rule
+   running out to the right so it reads as a divider rather than a heading */
+.cat{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem .9rem;margin-bottom:1.3rem}
+.cat h3{font-size:clamp(1.15rem,2.4vw,1.45rem)}
+.cat span{
+  font-family:var(--spec);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.cat::after{content:"";flex:1 1 4rem;height:1px;background:var(--cut);
+  background-image:repeating-linear-gradient(90deg,var(--cut) 0 6px,transparent 6px 11px);
+  background-color:transparent;align-self:center;min-width:2rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.4rem}
 .item{position:relative;min-width:0;background:var(--card);border:1.5px dashed var(--cut);border-radius:1.1rem;overflow:hidden;display:flex;flex-direction:column}
 .item.pick{border-style:solid;border-color:var(--rose);border-width:2px}
@@ -157,17 +188,6 @@ nav{
 .item .tags{font-family:var(--spec);font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
 .flag{position:absolute;top:.9rem;right:.9rem;z-index:2;background:var(--rose);color:#FFFFFF;font-family:var(--spec);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .65rem;border-radius:1rem}
 
-/* ---- bundle ---- */
-.bundle{border:2px solid var(--rose);border-radius:1.2rem;background:var(--card);padding:clamp(1.5rem,4vw,2.5rem);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
-@media (max-width:760px){.bundle{grid-template-columns:1fr}}
-.bundle h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:.6rem}
-.bundle ul{margin:.9rem 0 0;padding-left:1.1rem;color:var(--ink-soft);font-size:.92rem;columns:2;column-gap:1.6rem}
-@media (max-width:520px){.bundle ul{columns:1}}
-.bundle li{margin-bottom:.2rem;break-inside:avoid}
-.bundle-price{text-align:right}
-@media (max-width:760px){.bundle-price{text-align:left}}
-.bundle-price .was{font-family:var(--spec);font-size:.85rem;color:var(--ink-soft);text-decoration:line-through;display:block}
-.bundle-price .now{font-family:var(--display);font-size:clamp(2.6rem,7vw,3.6rem);color:var(--rose);line-height:1}
 
 /* ---- spec sheet ---- */
 .specsheet{border:1.5px dashed var(--cut);border-radius:1rem;background:var(--card);padding:1.5rem;font-family:var(--spec);font-size:.86rem}
@@ -231,6 +251,7 @@ footer{border-top:1px dashed var(--cut);padding-block:2.5rem 3rem;background:var
   .hero .lede{animation-delay:.19s}
   .hero .btn-row{animation-delay:.26s}
   .hero .trust{animation-delay:.33s}
+  .hero .trust:first-child{animation-delay:.04s}
   .stack-cap{animation:rise .5s ease .5s backwards}
 
   @media (min-width:561px){
@@ -247,7 +268,7 @@ footer{border-top:1px dashed var(--cut);padding-block:2.5rem 3rem;background:var
   /* scroll reveal, containers only so the cards keep their own hover transforms */
   @supports (animation-timeline: view()){
     .band-head,.grid,.product,
-    .bundle,.specsheet,.about>div,.contact>*{
+    .specsheet,.about>div,.contact>*{
       animation:rise .9s linear both;
       animation-timeline:view();
       animation-range:entry 0% entry 42%;
@@ -280,7 +301,7 @@ footer{border-top:1px dashed var(--cut);padding-block:2.5rem 3rem;background:var
 .mailbox:hover{border-color:var(--rose-soft)}
 
 /* smooth jumps, offset so the sticky nav never covers a section heading */
-html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+html{scroll-behavior:smooth;scroll-padding-top:6.25rem}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
