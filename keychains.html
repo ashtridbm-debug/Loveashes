@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Keychains &middot; Love, Ashes</title>
+<meta name="description" content="Hand beaded phone straps from Love, Ashes. Two designs, $2 each, made to order in Cavite.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+
+.straps{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:clamp(1.2rem,3vw,2rem)}
+.strap{
+  display:flex;flex-direction:column;
+  border:1.5px dashed var(--cut);border-radius:1.1rem;background:var(--card);overflow:hidden;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.strap:hover{transform:translateY(-4px);box-shadow:var(--lift);border-color:var(--rose)}
+/* photo slot. Until a real photo is dropped in, the dashed frame reads as part
+   of the proof-sheet look rather than a broken image. */
+.strap-shot{
+  aspect-ratio:3/4;background:var(--blush);
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1.5px dashed var(--cut);
+}
+.strap-shot img{width:100%;height:100%;object-fit:contain;padding:.6rem}
+.strap-body{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.strap h2{font-size:1.3rem}
+.strap p{color:var(--ink-soft);font-size:.9rem}
+.strap .price{font-family:var(--display);font-size:1.9rem;color:var(--rose);line-height:1}
+.strap .price-ask{
+  font-family:var(--spec);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.strap .btn{margin-top:auto;align-self:flex-start}
+.note{
+  border:1.5px dashed var(--cut);border-radius:1.1rem;background:var(--wash);
+  padding:clamp(1.4rem,4vw,2.2rem);max-width:42rem;margin:0 auto;text-align:center;
+}
+</style>
+</head>
+<body>
+
+
+<nav>
+  <div class="wrap navin">
+    <a class="mark" href="index.html">
+      <img src="img/logo.webp" alt="Love, ashes. Digital products." width="2000" height="667">
+    </a>
+    <div class="navlinks">
+      <span class="hasmenu">
+        <a href="products.html" aria-haspopup="true">Products<span class="caret" aria-hidden="true"></span></a>
+        <span class="menu">
+          <a href="products.html">Digital Products</a>
+          <a href="keychains.html">Keychains</a>
+          <a href="tiktok-finds.html">TikTok Finds</a>
+          <a href="commissions.html">Commissions</a>
+        </span>
+      </span>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+    <a class="btn" href="contact.html">Contact</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobilemenu">
+      <span class="bars" aria-hidden="true"></span>
+      <span class="vh">Menu</span>
+    </button>
+  </div>
+  <div class="mobilemenu" id="mobilemenu" hidden>
+    <div class="wrap mm-in">
+      <p class="mm-label">Products</p>
+      <a href="products.html">Digital Products</a>
+      <a href="keychains.html">Keychains</a>
+      <a href="tiktok-finds.html">TikTok Finds</a>
+      <a href="commissions.html">Commissions</a>
+      <p class="mm-label">More</p>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <p class="spec">Beaded by hand &middot; Cavite, PH</p>
+  <h1 style="font-size:clamp(2.3rem,6vw,3.6rem);margin-block:1rem .9rem;max-width:17ch">Phone straps, strung one at a time.</h1>
+  <p class="lede">Beaded by hand, a few strands at a time, and finished with a loop that threads through a phone case or a clasp that clips to a bag. Everything on this page is made to order, so give me a few days before it ships.</p>
+  <div class="trust">
+    <span>Made to order</span>
+    <span>Ships from Cavite</span>
+    <span>Checkout on Ko-fi</span>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <div class="straps">
+
+      <article class="strap">
+        <div class="strap-shot">
+          <img src="img/strap-black-white.webp" alt="Two beaded phone straps side by side, one white with red beads and small face beads, one black with white beads" width="675" height="900">
+        </div>
+        <div class="strap-body">
+          <h2>Black and White Phone Straps</h2>
+          <p>Two strands that work as a pair or on their own. The white one runs red beads and little printed face beads along the bottom, the black one keeps it to black, white and one face bead. Both finish in a white cord loop that threads through a phone case.</p>
+          <span class="price">$2</span>
+          <a class="btn" href="https://ko-fi.com/ashesbm/shop">Buy on Ko-fi</a>
+        </div>
+      </article>
+
+      <article class="strap">
+        <div class="strap-shot">
+          <img src="img/strap-pink.webp" alt="Pink beaded phone strap with a clear bow, pearl beads, silver heart and flower charms and an iridescent butterfly" width="239" height="900" loading="lazy">
+        </div>
+        <div class="strap-body">
+          <h2>Pink Butterfly Phone Strap</h2>
+          <p>Pink and pearl beads strung under a clear pink bow, with silver hearts, flowers and leaves spaced down both sides and tulip beads near the bottom. An iridescent butterfly hangs off the end, and a white cord loop threads through a phone case.</p>
+          <span class="price">$2</span>
+          <a class="btn" href="https://ko-fi.com/ashesbm/shop">Buy on Ko-fi</a>
+        </div>
+      </article>
+
+      <article class="strap">
+        <div class="strap-shot">
+          <img src="img/keychain-pink.webp" alt="Pink beaded keychain on a silver lobster clasp, with a bow, heart and flower charms and an iridescent butterfly" width="223" height="780" loading="lazy">
+        </div>
+        <div class="strap-body">
+          <h2>Pink Butterfly Keychain</h2>
+          <p>The same beads and charms as the phone strap, strung shorter and hung off a silver lobster clasp so it clips to a bag, a belt loop or your keys. Bow at the top, butterfly at the bottom.</p>
+          <span class="price-ask">Message for price</span>
+          <a class="btn" href="contact.html">Ask about this one</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="band tint">
+  <div class="wrap">
+    <div class="note">
+      <p class="spec">Want a colour that is not here</p>
+      <h2 style="font-size:clamp(1.5rem,3.4vw,2rem);margin-block:.6rem .8rem">Tell me the colours and I will string it.</h2>
+      <p style="color:var(--ink-soft)">Custom strands cost a little more depending on the beads and charms. Message me with what you have in mind and I will quote it before you pay.</p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn" href="contact.html">Ask for a custom strap</a>
+        <a class="btn ghost" href="https://ko-fi.com/ashesbm/shop">See the whole shop</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="mark" href="index.html" style="margin-bottom:.6rem">
+        <img src="img/logo.webp" alt="Love, ashes. Digital products." width="2000" height="667">
+      </a>
+      <br>
+      <small>loveashes.co &middot; Cavite, Philippines</small>
+    </div>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="https://ko-fi.com/ashesbm">Ko-fi Shop</a>
+      <a href="https://www.tiktok.com/@loveashes.co">TikTok</a>
+      <a href="https://ph.pinterest.com/ashesavayah/">Pinterest</a>
+      <a href="https://www.youtube.com/@Ashesavayah">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Mobile menu toggle: opens the sheet, closes it on a link, on Escape, on an
+   outside tap, and when the viewport grows past the breakpoint where the real
+   nav links come back. */
+(function(){
+  var b=document.querySelector('.burger'), m=document.getElementById('mobilemenu');
+  if(!b||!m)return;
+  function set(open){b.setAttribute('aria-expanded',open?'true':'false');m.hidden=!open;}
+  b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+  m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+  document.addEventListener('click',function(e){
+    if(!m.hidden&&!m.contains(e.target)&&!b.contains(e.target))set(false);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}
+  });
+  var mq=window.matchMedia('(min-width:901px)');
+  function sync(){if(mq.matches&&!m.hidden)set(false);}
+  if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync);
+  /* belt and braces: some browsers throttle matchMedia in background tabs, and
+     the sheet must never be left flagged open once the real nav links return */
+  window.addEventListener('resize',sync,{passive:true});
+  window.addEventListener('pageshow',sync);
+})();
+</script>
+</body>
+</html>

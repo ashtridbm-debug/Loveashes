@@ -9,6 +9,9 @@ cp -r img dist/img
 cp styles.css dist/styles.css
 cp products.html dist/products.html
 cp contact.html dist/contact.html
+cp keychains.html dist/keychains.html
+cp tiktok-finds.html dist/tiktok-finds.html
+cp commissions.html dist/commissions.html
 
 {
 cat <<'HEAD'

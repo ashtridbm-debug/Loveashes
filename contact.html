@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Contact &middot; Love, Ashes</title>
-<meta name="description" content="Message Love, Ashes about a free sample sheet, a custom file or a question about any template. Based in Cavite, Philippines.">
+<meta name="description" content="Message Love, Ashes about a custom file, a bulk order or a question about any template. Based in Cavite, Philippines.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="styles.css">
 <style>
@@ -42,29 +42,55 @@
       <img src="img/logo.webp" alt="Love, ashes. Digital products." width="2000" height="667">
     </a>
     <div class="navlinks">
-      <a href="products.html">Products</a>
+      <span class="hasmenu">
+        <a href="products.html" aria-haspopup="true">Products<span class="caret" aria-hidden="true"></span></a>
+        <span class="menu">
+          <a href="products.html">Digital Products</a>
+          <a href="keychains.html">Keychains</a>
+          <a href="tiktok-finds.html">TikTok Finds</a>
+          <a href="commissions.html">Commissions</a>
+        </span>
+      </span>
       <a href="index.html#about">About</a>
       <a href="contact.html">Contact us</a>
     </div>
     <a class="btn" href="products.html">Shop</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobilemenu">
+      <span class="bars" aria-hidden="true"></span>
+      <span class="vh">Menu</span>
+    </button>
+  </div>
+  <div class="mobilemenu" id="mobilemenu" hidden>
+    <div class="wrap mm-in">
+      <p class="mm-label">Products</p>
+      <a href="products.html">Digital Products</a>
+      <a href="keychains.html">Keychains</a>
+      <a href="tiktok-finds.html">TikTok Finds</a>
+      <a href="commissions.html">Commissions</a>
+      <p class="mm-label">More</p>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact us</a>
+    </div>
   </div>
 </nav>
 
 <header class="hero wrap">
   <div class="contact">
     <p class="spec">Contact us</p>
-    <h1 style="font-size:clamp(2.3rem,6vw,3.6rem);margin-block:1rem .9rem">Try one before you buy anything.</h1>
-    <p style="color:var(--ink-soft)">Message me and I will send a free sample sheet, no catch. Print it once and you will know whether my files are worth paying for. Custom work, bulk orders and questions about any template all go to the same inbox.</p>
+    <h1 style="font-size:clamp(2.3rem,6vw,3.6rem);margin-block:1rem .9rem">Ask before you buy.</h1>
+    <p style="color:var(--ink-soft)">Custom work, bulk orders and questions about any template all go to the same inbox. Tell me what you are after and I will come back with what it costs and how soon you can have it.</p>
     <div class="contact-fields">
       <div class="field">
         <span class="field-label">Email</span>
-        <span class="mailbox" id="mail">ashtridbm.co@gmail.com</span>
-        <button class="copy" type="button" data-copy="mail">Copy</button>
+        <span class="mailbox">ashtridbm.co@gmail.com</span>
       </div>
       <div class="field">
         <span class="field-label">Mobile</span>
-        <span class="mailbox" id="phone">0991 261 6382</span>
-        <button class="copy" type="button" data-copy="phone">Copy</button>
+        <span class="mailbox">0991 261 6382</span>
+      </div>
+      <div class="field">
+        <span class="field-label">PayPal</span>
+        <a class="mailbox paylink" href="https://www.paypal.me/itsurAshes">paypal.me/itsurAshes</a>
       </div>
       <p class="field-note">Calling from outside the Philippines, dial +63 991 261 6382.</p>
     </div>
@@ -96,12 +122,12 @@
       </article>
       <article class="channel">
         <h3>Pinterest</h3>
-        <p>Where the designs and the packaging ideas behind them get pinned.</p>
+        <p>Where the designs and the ideas behind them get pinned.</p>
         <a href="https://ph.pinterest.com/ashesavayah/">Follow the boards</a>
       </article>
       <article class="channel">
         <h3>YouTube</h3>
-        <p>Longer walkthroughs on printing, packaging and setting up a small shop.</p>
+        <p>Longer walkthroughs on printing, designing and setting up a small shop.</p>
         <a href="https://www.youtube.com/@Ashesavayah">Watch on YouTube</a>
       </article>
     </div>
@@ -140,37 +166,30 @@
 </footer>
 
 <script>
+/* Mobile menu toggle: opens the sheet, closes it on a link, on Escape, on an
+   outside tap, and when the viewport grows past the breakpoint where the real
+   nav links come back. */
 (function(){
-  var buttons=document.querySelectorAll(".copy[data-copy]");
-  Array.prototype.forEach.call(buttons,function(btn){
-    var target=document.getElementById(btn.getAttribute("data-copy"));
-    if(!target)return;
-    var label=btn.textContent;
-    var reset=function(text,wait){
-      btn.textContent=text;
-      setTimeout(function(){btn.textContent=label;},wait);
-    };
-    btn.addEventListener("click",function(){
-      var fallback=function(){
-        try{
-          var r=document.createRange();
-          r.selectNodeContents(target);
-          var s=window.getSelection();
-          s.removeAllRanges();
-          s.addRange(r);
-          reset("Selected",2400);
-        }catch(e){}
-      };
-      if(navigator.clipboard&&navigator.clipboard.writeText){
-        navigator.clipboard.writeText(target.textContent.trim()).then(function(){
-          reset("Copied",1800);
-        },fallback);
-      }else{
-        fallback();
-      }
-    });
+  var b=document.querySelector('.burger'), m=document.getElementById('mobilemenu');
+  if(!b||!m)return;
+  function set(open){b.setAttribute('aria-expanded',open?'true':'false');m.hidden=!open;}
+  b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+  m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+  document.addEventListener('click',function(e){
+    if(!m.hidden&&!m.contains(e.target)&&!b.contains(e.target))set(false);
   });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}
+  });
+  var mq=window.matchMedia('(min-width:901px)');
+  function sync(){if(mq.matches&&!m.hidden)set(false);}
+  if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync);
+  /* belt and braces: some browsers throttle matchMedia in background tabs, and
+     the sheet must never be left flagged open once the real nav links return */
+  window.addEventListener('resize',sync,{passive:true});
+  window.addEventListener('pageshow',sync);
 })();
 </script>
+
 </body>
 </html>

@@ -9,23 +9,46 @@
       <img src="img/logo.webp" alt="Love, ashes. Digital products." width="2000" height="667">
     </a>
     <div class="navlinks">
-      <a href="products.html">Products</a>
+      <span class="hasmenu">
+        <a href="products.html" aria-haspopup="true">Products<span class="caret" aria-hidden="true"></span></a>
+        <span class="menu">
+          <a href="products.html">Digital Products</a>
+          <a href="keychains.html">Keychains</a>
+          <a href="tiktok-finds.html">TikTok Finds</a>
+          <a href="commissions.html">Commissions</a>
+        </span>
+      </span>
       <a href="#about">About</a>
       <a href="contact.html">Contact us</a>
     </div>
     <a class="btn" href="products.html">Shop</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobilemenu">
+      <span class="bars" aria-hidden="true"></span>
+      <span class="vh">Menu</span>
+    </button>
+  </div>
+  <div class="mobilemenu" id="mobilemenu" hidden>
+    <div class="wrap mm-in">
+      <p class="mm-label">Products</p>
+      <a href="products.html">Digital Products</a>
+      <a href="keychains.html">Keychains</a>
+      <a href="tiktok-finds.html">TikTok Finds</a>
+      <a href="commissions.html">Commissions</a>
+      <p class="mm-label">More</p>
+      <a href="#about">About</a>
+      <a href="contact.html">Contact us</a>
+    </div>
   </div>
 </nav>
 
 <header class="hero wrap" id="top">
   <div class="hero-grid">
     <div>
-      <p class="spec">Printable templates from &#8369;99 &middot; Cavite, PH</p>
-      <h1>Packaging that makes people <em>reorder</em>.</h1>
-      <p class="lede">Thank you stickers, business cards and photo printing sheets for Filipino online sellers. Download the file, print it at your local shop, ship it out the same week.</p>
+      <h1>Digital products you buy once and print <em>forever</em>.</h1>
+      <p class="lede">Thank you stickers, business cards and photo printing sheets, made in the Philippines and priced in pesos. Download the file and print it at any local shop.</p>
       <div class="btn-row">
         <a class="btn" href="#shop">See the templates</a>
-        <a class="btn ghost" href="contact.html">Get a free sample</a>
+        <a class="btn ghost" href="contact.html">Contact us</a>
       </div>
       <div class="trust">
         <span>Instant download</span>
@@ -43,7 +66,7 @@
       <figure class="s3">
         <img src="img/thank-you-stickers.png" alt="A sheet of thirty round thank you stickers in pink and florals" width="480" height="679">
       </figure>
-      <p class="stack-cap">Three templates in the shop now</p>
+      <p class="stack-cap">Three digital products in the shop now</p>
     </div>
   </div>
 </header>
@@ -67,7 +90,7 @@
         </div>
         <div class="item-body">
           <h4>30 pcs Thank You Stickers</h4>
-          <p>Twelve designs across thirty stickers, from soft florals to bold type. For sealing packaging and thanking buyers for supporting a small business.</p>
+          <p>Twelve designs across thirty stickers, from soft florals to bold type. For sealing orders and thanking buyers for supporting a small business.</p>
           <span class="price">&#8369;99</span>
           <span class="tags">A4 &middot; 30 pcs &middot; Print ready</span>
         </div>
@@ -106,7 +129,7 @@
       <div>
         <p class="spec">Everything together</p>
         <h2>Small Business Starter Bundle</h2>
-        <p style="color:var(--ink-soft)">All three templates in one download. Enough to brand your packaging and print your own ID photos in the same afternoon.</p>
+        <p style="color:var(--ink-soft)">All three digital products in one download. Enough to brand a whole shop and print your own ID photos in the same afternoon.</p>
         <ul>
           <li>30 pcs thank you stickers</li>
           <li>Business card template</li>
@@ -136,7 +159,7 @@
         <dt>Resolution</dt><dd>300 DPI, sized for A4 sheets</dd>
         <dt>Licence</dt><dd>One shop, unlimited reprints. Resale of the file itself is not allowed</dd>
         <dt>Delivery</dt><dd>Instant download after payment on Ko-fi</dd>
-        <dt>Refunds</dt><dd>Digital files, so no refunds. Ask for the free sample first</dd>
+        <dt>Refunds</dt><dd>Digital files, so no refunds. Message me first if you are unsure what you are getting</dd>
         <dt>Not included</dt><dd>Printing, sticker paper and photo stock. Your local print shop handles that</dd>
       </dl>
     </div>
@@ -162,8 +185,8 @@
 <section class="band tint">
   <div class="wrap contact">
     <p class="spec">Start here</p>
-    <h2>Try one before you buy anything.</h2>
-    <p>Message me and I will send a free sample sheet, no catch. Print it once and you will know whether my files are worth paying for.</p>
+    <h2>Not sure which one you need.</h2>
+    <p>Tell me what you sell and how you pack an order, and I will point you at the template that covers it.</p>
     <div class="btn-row">
       <a class="btn" href="products.html">See the products</a>
       <a class="btn ghost" href="contact.html">Contact us</a>
@@ -192,3 +215,28 @@
   </div>
 </footer>
 
+<script>
+/* Mobile menu toggle. The only script on the site: opens the sheet, closes it
+   on a link, on Escape, on an outside tap, and when the viewport grows past
+   the breakpoint where the real nav links come back. */
+(function(){
+  var b=document.querySelector('.burger'), m=document.getElementById('mobilemenu');
+  if(!b||!m)return;
+  function set(open){b.setAttribute('aria-expanded',open?'true':'false');m.hidden=!open;}
+  b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+  m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+  document.addEventListener('click',function(e){
+    if(!m.hidden&&!m.contains(e.target)&&!b.contains(e.target))set(false);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}
+  });
+  var mq=window.matchMedia('(min-width:901px)');
+  function sync(){if(mq.matches&&!m.hidden)set(false);}
+  if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync);
+  /* belt and braces: some browsers throttle matchMedia in background tabs, and
+     the sheet must never be left flagged open once the real nav links return */
+  window.addEventListener('resize',sync,{passive:true});
+  window.addEventListener('pageshow',sync);
+})();
+</script>

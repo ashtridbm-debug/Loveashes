@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TikTok Finds &middot; Love, Ashes</title>
+<meta name="description" content="Every product Ashes features on TikTok, with the links, plus the Pinterest boards and the longer reviews.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+.note{
+  border:1.5px dashed var(--cut);border-radius:1.1rem;background:var(--wash);
+  padding:clamp(1.4rem,4vw,2.2rem);max-width:42rem;margin:0 auto;text-align:center;
+}
+.linkcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem;margin-top:2rem}
+.linkcard{
+  display:block;text-decoration:none;padding:1.3rem;
+  border:1.5px dashed var(--cut);border-radius:1.1rem;background:var(--card);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.linkcard:hover{transform:translateY(-4px);box-shadow:var(--lift);border-color:var(--rose)}
+.linkcard h3{font-size:1.25rem;margin-bottom:.4rem}
+.linkcard p{color:var(--ink-soft);font-size:.9rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap navin">
+    <a class="mark" href="index.html">
+      <img src="img/logo.webp" alt="Love, ashes. Digital products." width="2000" height="667">
+    </a>
+    <div class="navlinks">
+      <span class="hasmenu">
+        <a href="products.html" aria-haspopup="true">Products<span class="caret" aria-hidden="true"></span></a>
+        <span class="menu">
+          <a href="products.html">Digital Products</a>
+          <a href="keychains.html">Keychains</a>
+          <a href="tiktok-finds.html">TikTok Finds</a>
+          <a href="commissions.html">Commissions</a>
+        </span>
+      </span>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+    <a class="btn" href="contact.html">Contact</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="mobilemenu">
+      <span class="bars" aria-hidden="true"></span>
+      <span class="vh">Menu</span>
+    </button>
+  </div>
+  <div class="mobilemenu" id="mobilemenu" hidden>
+    <div class="wrap mm-in">
+      <p class="mm-label">Products</p>
+      <a href="products.html">Digital Products</a>
+      <a href="keychains.html">Keychains</a>
+      <a href="tiktok-finds.html">TikTok Finds</a>
+      <a href="commissions.html">Commissions</a>
+      <p class="mm-label">More</p>
+      <a href="index.html#about">About</a>
+      <a href="contact.html">Contact us</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <p class="spec">Shop my finds</p>
+  <h1 style="font-size:clamp(2.3rem,6vw,3.6rem);margin-block:1rem .9rem;max-width:18ch">The things I actually use.</h1>
+  <p class="lede">Everything I show on TikTok and save on Pinterest, collected in one place. Buying through my links costs you nothing extra and it helps more than you would think.</p>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <div class="linkcards">
+      <a class="linkcard" href="https://www.tiktok.com/@ashes.finds">
+        <h3>TikTok finds</h3>
+        <p>Every product I have featured, with the links in the videos.</p>
+      </a>
+      <a class="linkcard" href="https://ph.pinterest.com/ashesavayah/">
+        <h3>Pinterest boards</h3>
+        <p>Saved by category, for when you are hunting something specific.</p>
+      </a>
+      <a class="linkcard" href="https://www.youtube.com/@Ashesavayah">
+        <h3>YouTube</h3>
+        <p>The longer reviews, for anything worth more than a minute.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="mark" href="index.html" style="margin-bottom:.6rem">
+        <img src="img/logo.webp" alt="Love, ashes. Digital products." width="2000" height="667">
+      </a>
+      <br>
+      <small>loveashes.co &middot; Cavite, Philippines</small>
+    </div>
+    <div class="foot-links">
+      <a href="index.html">Home</a>
+      <a href="https://ko-fi.com/ashesbm">Ko-fi Shop</a>
+      <a href="https://www.tiktok.com/@loveashes.co">TikTok</a>
+      <a href="https://ph.pinterest.com/ashesavayah/">Pinterest</a>
+      <a href="https://www.youtube.com/@Ashesavayah">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* Mobile menu toggle: opens the sheet, closes it on a link, on Escape, on an
+   outside tap, and when the viewport grows past the breakpoint where the real
+   nav links come back. */
+(function(){
+  var b=document.querySelector('.burger'), m=document.getElementById('mobilemenu');
+  if(!b||!m)return;
+  function set(open){b.setAttribute('aria-expanded',open?'true':'false');m.hidden=!open;}
+  b.addEventListener('click',function(e){e.stopPropagation();set(m.hidden);});
+  m.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+  document.addEventListener('click',function(e){
+    if(!m.hidden&&!m.contains(e.target)&&!b.contains(e.target))set(false);
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&!m.hidden){set(false);b.focus();}
+  });
+  var mq=window.matchMedia('(min-width:901px)');
+  function sync(){if(mq.matches&&!m.hidden)set(false);}
+  if(mq.addEventListener)mq.addEventListener('change',sync);else if(mq.addListener)mq.addListener(sync);
+  /* belt and braces: some browsers throttle matchMedia in background tabs, and
+     the sheet must never be left flagged open once the real nav links return */
+  window.addEventListener('resize',sync,{passive:true});
+  window.addEventListener('pageshow',sync);
+})();
+</script>
+
+</body>
+</html>
