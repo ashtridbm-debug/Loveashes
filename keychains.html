@@ -21,7 +21,9 @@
 /* photo slot. Until a real photo is dropped in, the dashed frame reads as part
    of the proof-sheet look rather than a broken image. */
 .strap-shot{
-  aspect-ratio:3/4;background:var(--blush);
+  /* a flex item's automatic minimum size is its content, which lets a tall
+     photo stretch the frame past its ratio. min-height:0 lets 3:4 win. */
+  aspect-ratio:3/4;flex:none;min-height:0;background:var(--blush);
   display:flex;align-items:center;justify-content:center;
   border-bottom:1.5px dashed var(--cut);
 }
@@ -99,11 +101,11 @@
 
       <article class="strap">
         <div class="strap-shot">
-          <img src="img/strap-black-white.webp" alt="Two beaded phone straps side by side, one white with red beads and small face beads, one black with white beads" width="675" height="900">
+          <img src="img/strap-white.webp" alt="White beaded phone strap with two red beads and a dark printed face bead at the bottom" width="675" height="900">
         </div>
         <div class="strap-body">
-          <h2>Black and White Phone Straps</h2>
-          <p>Two strands that work as a pair or on their own. The white one runs red beads and little printed face beads along the bottom, the black one keeps it to black, white and one face bead. Both finish in a white cord loop that threads through a phone case.</p>
+          <h2>White Phone Strap</h2>
+          <p>White beads the whole way round, broken at the bottom by two deep red beads and a printed face bead. Finishes in a white cord loop that threads through a phone case.</p>
           <span class="price">$2</span>
           <a class="btn" href="https://ko-fi.com/ashesbm/shop">Buy on Ko-fi</a>
         </div>
@@ -111,7 +113,19 @@
 
       <article class="strap">
         <div class="strap-shot">
-          <img src="img/strap-pink.webp" alt="Pink beaded phone strap with a clear bow, pearl beads, silver heart and flower charms and an iridescent butterfly" width="239" height="900" loading="lazy">
+          <img src="img/strap-black.webp" alt="Black beaded phone strap with white beads and a red printed face bead at the bottom" width="675" height="900">
+        </div>
+        <div class="strap-body">
+          <h2>Black Phone Strap</h2>
+          <p>Black beads with a pair of white ones at the bottom and a single red face bead between them. Same white cord loop, so it fits any phone case.</p>
+          <span class="price">$2</span>
+          <a class="btn" href="https://ko-fi.com/ashesbm/shop">Buy on Ko-fi</a>
+        </div>
+      </article>
+
+      <article class="strap">
+        <div class="strap-shot">
+          <img src="img/strap-pink.webp" alt="Pink beaded phone strap with a clear bow, pearl beads, silver heart and flower charms and an iridescent butterfly" width="675" height="900" loading="lazy">
         </div>
         <div class="strap-body">
           <h2>Pink Butterfly Phone Strap</h2>
@@ -123,7 +137,7 @@
 
       <article class="strap">
         <div class="strap-shot">
-          <img src="img/keychain-pink.webp" alt="Pink beaded keychain on a silver lobster clasp, with a bow, heart and flower charms and an iridescent butterfly" width="223" height="780" loading="lazy">
+          <img src="img/keychain-pink.webp" alt="Pink beaded keychain on a silver lobster clasp, with a bow, heart and flower charms and an iridescent butterfly" width="675" height="900" loading="lazy">
         </div>
         <div class="strap-body">
           <h2>Pink Butterfly Keychain</h2>
